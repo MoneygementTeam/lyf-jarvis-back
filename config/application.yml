@@ -30,7 +30,8 @@ spring:
       data-locations: file:./data/data.sql
   ai:
     openai:
-      api-key: testKey
+#      api-key: testKey
+      api-key: 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
     chat:
       options:
         model: gpt-4o
@@ -47,7 +48,7 @@ spring:
 
 # Swagger
 springdoc:
-  packages-to-scan: com.moneygement.jarvis
+  packages-to-scan: com.moneygement.lyf.jarvis
   api-docs:
     path: /v3/api-docs
   swagger-ui:
@@ -80,13 +81,3 @@ management:
 # log4j
 logging:
   config: file:./config/log4j2.xml
-
-# Spring AI 옵션 설정
-ai:
-  chat-client:
-    system-text:
-      funny: 시대 상황의 실제 자산 가격을 분석해서 이모지 많이 섞어서 우스꽝스럽게 대답해
-      analytical-feedback: 시대 상황의 실제 자산 등락률을 알려주고, 투자 결과와 습관에 대해 재미있게 피드백해
-    answer-format:
-      quiz: '{"majorInvestCategory": ["a", "b", "c"], "subInvestCategory": {"a": [{"a-a": {"fluctuationRate": 0.0, "description": ""}, {"a-b": {"fluctuationRate": 0, "description": ""}, {"a-c": {"fluctuationRate": 0, "description": ""}]}, {"b": [{"b-a": {"fluctuationRate": 0, "description": ""}, {"b-b": {"fluctuationRate": 0, "description": ""}, {"b-c": {"fluctuationRate": 0, "description": ""}]}, {"c": [{"c-a": {"fluctuationRate": 0, "description": ""}, {"c-b": {"fluctuationRate": 0, "description": ""}, {"c-c": {"fluctuationRate": 0, "description": ""}]}}'
-      feedback: '{"assetFeedback": "", "investFeedback": ""}'

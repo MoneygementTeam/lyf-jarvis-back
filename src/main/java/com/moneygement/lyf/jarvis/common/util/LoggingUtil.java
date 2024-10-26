@@ -32,7 +32,6 @@ public class LoggingUtil {
                  responseBody);
     }
 
-    @Deprecated
     public static void printRestTemplateErrorLog(Throwable e, String method, String uri, HttpHeaders headers, Object data) {
         Map<String, Object> logData = new HashMap<>();
         Map<String, Object> reqMap = new HashMap<>();
@@ -61,7 +60,6 @@ public class LoggingUtil {
         }
     }
 
-    @Deprecated
     public static void printRestTemplateOneLineLog(String method, String uri, HttpHeaders headers, Object data, ResponseEntity<?> response) {
         Map<String, Object> logData = new HashMap<>();
         Map<String, Object> reqMap = new HashMap<>();
