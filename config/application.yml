@@ -1,0 +1,92 @@
+server:
+  port: 8080
+  protocol: https
+  host: localhost
+  servlet:
+    encoding:
+      charset: UTF-8
+
+spring:
+  profiles:
+    # change profile
+    active: local
+  config:
+    import:
+      - file:./config/queries.yml
+      - file:./config/external-url.yml
+      - file:./config/business-config.yml
+      - file:./config/encryption.yml
+  jpa:
+    show-sql: true
+    format_sql: true
+    use_sql_comments: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  sql:
+    init:
+      encoding: UTF-8
+      schema-locations: file:./data/schema.sql
+      data-locations: file:./data/data.sql
+  ai:
+    openai:
+      api-key: testKey
+    chat:
+      options:
+        model: gpt-4o
+        temperature: 0.6
+  logging:
+    level:
+      root: INFO
+      org.springframework.web: DEBUG
+      org:
+        hibernate:
+          SQL: DEBUG
+          type: TRACE
+      org.hibernate.engine.query.spi: DEBUG
+
+# Swagger
+springdoc:
+  packages-to-scan: com.moneygement.jarvis
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger
+    protocol: https
+
+#Spring Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, env, beans, mappings, refresh, loggers, prometheus
+  endpoint:
+    health:
+      show-details: always  # 건강 상태에 대한 자세한 정보 노출
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  simple:
+    metrics:
+      export:
+        enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+# log4j
+logging:
+  config: file:./config/log4j2.xml
+
+# Spring AI 옵션 설정
+ai:
+  chat-client:
+    system-text:
+      funny: 시대 상황의 실제 자산 가격을 분석해서 이모지 많이 섞어서 우스꽝스럽게 대답해
+      analytical-feedback: 시대 상황의 실제 자산 등락률을 알려주고, 투자 결과와 습관에 대해 재미있게 피드백해
+    answer-format:
+      quiz: '{"majorInvestCategory": ["a", "b", "c"], "subInvestCategory": {"a": [{"a-a": {"fluctuationRate": 0.0, "description": ""}, {"a-b": {"fluctuationRate": 0, "description": ""}, {"a-c": {"fluctuationRate": 0, "description": ""}]}, {"b": [{"b-a": {"fluctuationRate": 0, "description": ""}, {"b-b": {"fluctuationRate": 0, "description": ""}, {"b-c": {"fluctuationRate": 0, "description": ""}]}, {"c": [{"c-a": {"fluctuationRate": 0, "description": ""}, {"c-b": {"fluctuationRate": 0, "description": ""}, {"c-c": {"fluctuationRate": 0, "description": ""}]}}'
+      feedback: '{"assetFeedback": "", "investFeedback": ""}'

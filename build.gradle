@@ -1,0 +1,81 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+}
+
+group = 'com.moneygement.lyf.jarvis'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+
+    // Log4js
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
+dependencies {
+    // Spring Boot Starter Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Spring AI
+    implementation platform('org.springframework.ai:spring-ai-bom:1.0.0-M1')
+    implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+
+    // Spring Boot JPA Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // MySQL Dependencies
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // P6Spy
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.1'
+
+    // Lombok Dependency
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Swagger API Docs
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    // Apache Commons Lang3
+    implementation 'org.apache.commons:commons-lang3'
+
+    // Guava
+    implementation 'com.google.guava:guava:33.3.0-jre'
+
+    // Mapstruct
+    implementation 'org.mapstruct:mapstruct:1.6.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+
+    // Log4j2
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.apache.logging.log4j:log4j-layout-template-json'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

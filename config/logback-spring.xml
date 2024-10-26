@@ -1,0 +1,67 @@
+<configuration>
+    <!-- 기본 Spring Boot Logback 설정 포함 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- 로그 파일 경로 설정 -->
+    <property name="LOG_PATH" value="${LOG_PATH:-./logs}"/>
+    <property name="LOG_FILE" value="${LOG_PATH}/lyf-jarvis-back.log"/>
+    <property name="HIBERNATE_LOG_FILE" value="${LOG_PATH}/lyf-jarvis-back-hibernate.log"/>
+
+    <!-- 콘솔 로그 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) -
+                %magenta(%class{15}:%M{15}) - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 파일 로그 설정 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 로그 파일 이름 설정 -->
+        <file>${LOG_FILE}</file>
+        <!-- 로그 롤링 정책 설정 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 로그 파일 이름 패턴 -->
+            <fileNamePattern>${LOG_PATH}/lyf-jarvis-back.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 로그 파일 보관 기간 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <!-- 로그 출력 형식 설정 -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <!--        <encoder>-->
+        <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %class{0}.%M - %msg%n</pattern>-->
+        <!--        </encoder>-->
+    </appender>
+
+    <!-- 애플리케이션 로거 설정 -->
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="com.moneygement.lyf.jarvis" level="INFO"/>
+
+    <!-- Hibernate 로거 설정 -->
+    <logger name="org.hibernate" level="INFO" additivity="false">
+        <appender-ref ref="HIBERNATE_FILE"/>
+    </logger>
+
+    <!-- Hibernate SQL 로그 파일 설정 -->
+    <appender name="HIBERNATE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Hibernate 로그 파일 이름 설정 -->
+        <file>${HIBERNATE_LOG_FILE}</file>
+        <!-- 로그 롤링 정책 설정 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Hibernate 로그 파일 이름 패턴 -->
+            <fileNamePattern>${LOG_PATH}/lyf-jarvis-back-hibernate.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 로그 파일 보관 기간 -->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <!-- 로그 출력 형식 설정 -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <!-- 루트 로거 설정 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

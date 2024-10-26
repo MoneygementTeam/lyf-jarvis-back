@@ -1,0 +1,13 @@
+queries:
+  test: |
+    SELECT * FROM FOO
+
+  test2: |
+    SELECT * FROM BAR
+
+  test3: |
+    SELECT m 
+    FROM FOO m 
+    WHERE m.status = '100' 
+    ORDER BY m.priority ASC 
+    LIMIT :selectLimit

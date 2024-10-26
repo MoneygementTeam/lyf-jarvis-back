@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 1.75rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .social-login {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .social-login a {
+            margin: 0.5rem 0;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .social-login img {
+            width: 300px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 6px;
+            transition: opacity 0.3s ease;
+        }
+        .social-login img:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Login / Sign Up</h1>
+    <form id="loginForm">
+        <input type="text" placeholder="id" required>
+        <input type="password" placeholder="password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div class="social-login">
+        <a th:href="${location}">
+            <img th:src="@{/kakao_login_large_wide.png}" alt="kakao login">
+        </a>
+        <a href="#" onclick="alert('구글 로그인 기능은 아직 구현되지 않았습니다.ㅠㅠ')">
+            <img th:src="@{/web_light_sq_ctn_3x.png}" alt="google login">
+        </a>
+    </div>
+</div>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('자체 로그인 기능은 아직 구현되지 않았습니다.ㅠㅠ');
+    });
+</script>
+</body>
+</html>

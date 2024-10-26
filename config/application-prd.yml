@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: prd
+  datasource:
+    url: jdbc:mysql://database-1.cv4wygc02ww1.us-east-1.rds.amazonaws.com:3306/moneygement
+    username: admin
+    password: ekskfakstp1!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+      continue-on-error: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+# p6spy
+datasource:
+  p6spy:
+    enable-logging:
+      false
+

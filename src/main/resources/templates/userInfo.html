@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Info</title>
+    <script>
+        window.onload = function() {
+            var userInfoJson = '[[${userInfoJson}]]';
+            if (window.opener) {
+                window.opener.postMessage(userInfoJson, "*");
+                window.close();
+            }
+        };
+    </script>
+</head>
+<body>
+<pre th:text="${userInfoJson}"></pre> <!-- JSON 데이터 출력 -->
+</body>
+</html>

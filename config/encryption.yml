@@ -1,0 +1,7 @@
+# Jasypt 설정
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: mypassword
+    #    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator

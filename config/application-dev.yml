@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: ${DB_HOST}
+    username: admin
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+      continue-on-error: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# p6spy
+datasource:
+  p6spy:
+    enable-logging:
+      false
+
