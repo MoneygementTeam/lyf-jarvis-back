@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/travel")
 @RequiredArgsConstructor
-@Tag(name = "Travel", description = "여행 계획 추천 API")  // Swagger 태그
+@Tag(name = "Travel", description = "여행 계획 추천 API")
 public class TravelController {
 
     private final TravelService travelService;
