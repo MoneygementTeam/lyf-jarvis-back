@@ -2,13 +2,11 @@ package com.moneygement.lyf.jarvis.ai.service;
 
 import static com.moneygement.lyf.jarvis.common.util.HttpClientUtil.post;
 
-import com.moneygement.lyf.jarvis.ai.domain.OptimalRouteRequest;
-import com.moneygement.lyf.jarvis.ai.domain.OptimalRouteResponse;
 import com.moneygement.lyf.jarvis.ai.domain.PointPickRequest;
 import com.moneygement.lyf.jarvis.ai.domain.PointPickResponse;
 import com.moneygement.lyf.jarvis.ai.domain.VoiceTextParsingRequest;
 import com.moneygement.lyf.jarvis.ai.domain.VoiceTextParsingResponse;
-import com.moneygement.lyf.jarvis.travel.config.ChatClientConfig;
+import com.moneygement.lyf.jarvis.ai.config.ChatClientConfig;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,7 @@ public class AiServiceImpl implements AiService {
         try {
             response = chatClient.prompt()
                       .system(systemText)
-                      .user(prompt)
+                      .user(prompt != null ? prompt : "")
                       .call()
                       .entity(entity);
         } catch (Exception e) {
@@ -38,18 +36,13 @@ public class AiServiceImpl implements AiService {
             throw new RuntimeException(e);
         }
 
-        log.info("sendChatToAi Requset: {}, Response: {}", prompt, response);
+        log.info("sendChatToAi Request: {}, Response: {}", prompt, response);
         return response;
     }
 
     @Override
     public VoiceTextParsingResponse callGptForVoiceTextParsing(VoiceTextParsingRequest request) {
         return sendChatToAi(config.getVoiceTextParsingSystemText(), request.toString(), VoiceTextParsingResponse.class);
-    }
-
-    @Override
-    public OptimalRouteResponse callGptForOptimalRoute(OptimalRouteRequest request) {
-        return sendChatToAi(config.getOptimalRouteSystemText(), request.toString(), OptimalRouteResponse.class);
     }
 
     @Override

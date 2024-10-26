@@ -1,4 +1,4 @@
-package com.moneygement.lyf.jarvis.travel.config;
+package com.moneygement.lyf.jarvis.ai.config;
 
 import lombok.Getter;
 import org.springframework.ai.chat.client.ChatClient;
