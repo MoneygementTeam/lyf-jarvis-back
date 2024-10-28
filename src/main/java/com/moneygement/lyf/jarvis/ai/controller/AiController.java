@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneygement.lyf.jarvis.ai.domain.SmallChatRequest;
+import com.moneygement.lyf.jarvis.ai.domain.SmallChatResponse;
 import com.moneygement.lyf.jarvis.ai.service.AiService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,8 +23,8 @@ public class AiController {
 
 	@PostMapping("/small-chat")
 	@Operation(summary = "잡담", description = "친절한 잡담을 제공합니다.")
-	public ResponseEntity<String> recommendTravelPlan(@RequestBody SmallChatRequest smallChatRequest) {
-		return ResponseEntity.ok(aiService.callSmallChat(smallChatRequest).chat());
+	public ResponseEntity<SmallChatResponse> recommendTravelPlan(@RequestBody SmallChatRequest smallChatRequest) {
+		return ResponseEntity.ok(aiService.callSmallChat(smallChatRequest));
 	}
 
 
