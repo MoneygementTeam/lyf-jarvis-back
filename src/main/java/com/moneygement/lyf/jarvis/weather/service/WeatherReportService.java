@@ -17,7 +17,7 @@ public class WeatherReportService {
 		return String.format(
 			"In %s: %s, %.1f°C (feels like %.1f°C)",
 			response.getName(),
-			response.getWeather().getFirst().getMain(),
+			response.getWeather().get(0).getMain(),
 			response.getMain().getTemp(),
 			response.getMain().getFeelsLike()
 		);
