@@ -9,13 +9,13 @@ server:
 spring:
   profiles:
     # change profile
-    active: local
+    active: prod
   config:
     import:
-      - file:./config/queries.yml
-      - file:./config/external-url.yml
-      - file:./config/business-config.yml
-      - file:./config/encryption.yml
+      - classpath:queries.yml
+      - classpath:external-url.yml
+      - classpath:business-config.yml
+      - classpath:encryption.yml
   jpa:
     show-sql: true
     format_sql: true
@@ -26,8 +26,8 @@ spring:
   sql:
     init:
       encoding: UTF-8
-      schema-locations: file:./data/schema.sql
-      data-locations: file:./data/data.sql
+      schema-locations: classpath:data/schema.sql
+      data-locations: classpath:data/data.sql
   ai:
     openai:
 #      api-key: testKey
@@ -80,4 +80,4 @@ management:
 
 # log4j
 logging:
-  config: file:./config/log4j2.xml
+  config: classpath:log4j2.xml

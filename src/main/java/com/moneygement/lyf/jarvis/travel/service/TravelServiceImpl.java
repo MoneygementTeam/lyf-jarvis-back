@@ -37,7 +37,7 @@ public class TravelServiceImpl implements TravelService {
                                                      .map(location -> List.of(location.getLongitude(), location.getLatitude()))
                                                      .toList();
         OptimalRouteRequest optimalRouteRequest = new OptimalRouteRequest(points);
-        OptimalRouteResponse optimalRouteResponse = routeService.callGraphHopperForOptimalRoute(optimalRouteRequest);
+        OptimalRouteResponse optimalRouteResponse = routeService.getOptimalRoute(optimalRouteRequest);
 
         // 4. 여행 계획 DTO 생성
         return createTravelPlanResponse(request.getStartPoint(),

@@ -1,11 +1,11 @@
 spring:
   config:
     activate:
-      on-profile: prd
+      on-profile: prod
   datasource:
-    url: jdbc:mysql://database-1.cv4wygc02ww1.us-east-1.rds.amazonaws.com:3306/moneygement
+    url: ${DB_HOST}
     username: admin
-    password: ekskfakstp1!
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
@@ -13,7 +13,7 @@ spring:
       continue-on-error: true
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
 
 # p6spy
 datasource:

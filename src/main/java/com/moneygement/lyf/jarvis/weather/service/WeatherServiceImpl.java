@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class WeatherServiceImpl implements WeatherService {
 	private final OpenWeatherConfig openWeatherConfig;
 
-	public WeatherInformationResponse callWeatherApi(double latitude, double longitude) {
+	public WeatherInformationResponse getWeather(double latitude, double longitude) {
 		ResponseEntity<Object> response = HttpClientUtil.get(null, openWeatherConfig.getOpenWeatherUrl()
 			+ "?lat=" + latitude
 			+ "&lon=" + longitude

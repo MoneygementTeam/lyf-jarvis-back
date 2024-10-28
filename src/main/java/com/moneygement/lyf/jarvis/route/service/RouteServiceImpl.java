@@ -20,7 +20,7 @@ public class RouteServiceImpl implements RouteService {
     private final GraphHopperConfig graphHopperConfig;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public OptimalRouteResponse callGraphHopperForOptimalRoute(OptimalRouteRequest request) throws IOException {
+    public OptimalRouteResponse getOptimalRoute(OptimalRouteRequest request) throws IOException {
         ResponseEntity<Object> response = HttpClientUtil.post(null, graphHopperConfig.getGraphHopperUrl()
                                                                     + "?key=" + graphHopperConfig.getGraphHopperApiKey(), request);
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
