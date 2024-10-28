@@ -68,6 +68,10 @@
    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma"/>
 </p>
 
+## Sequence Diagram
+
+![Sequence Diagram](https://github.com/user-attachments/assets/6d49d67b-3459-4d6f-a85e-8cca42d8b45c)
+
 ## Team Introduction
 <h2 style="text-align: center;">Team Moneygement(Moneygement)</h2>
 
