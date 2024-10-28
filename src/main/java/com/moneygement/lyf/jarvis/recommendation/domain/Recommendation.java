@@ -23,7 +23,7 @@ public class Recommendation {
 	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "description", length = 2500)
 	private String description;
 
 	@Column(name = "category", length = 50)
