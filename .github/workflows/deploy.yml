@@ -69,4 +69,4 @@ jobs:
             fi
 
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/lyf-jarvis-back:latest
-            sudo docker run -d --name lyf-jarvis-back-${{ github.sha }} -p 8081:8080 ${{ secrets.DOCKERHUB_USERNAME }}/lyf-jarvis-back:latest
+            sudo docker run -d --name lyf-jarvis-back-${{ github.sha }} -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/lyf-jarvis-back:latest
