@@ -46,10 +46,6 @@ public class TravelServiceImpl implements TravelService {
     }
 
     private TravelPlanResponse createTravelPlanResponse(Location startPoint, List<Location> pointList, OptimalRouteResponse optimalRoute) {
-        TravelPlanResponse response = new TravelPlanResponse();
-        response.setStartPoint(startPoint);
-        response.setPointList(pointList);
-        response.setOptimalRoute(optimalRoute);
-        return response;
+		return new TravelPlanResponse(startPoint, pointList, optimalRoute);
     }
 }

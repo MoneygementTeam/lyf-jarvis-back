@@ -33,3 +33,6 @@ ai:
 
 graph-hopper:
   api-key: 39cf5325-2737-4e53-8f65-c3bb03c90277
+
+open-weather:
+  api-key: 56c01a3e910011f31f1b85a81486647f

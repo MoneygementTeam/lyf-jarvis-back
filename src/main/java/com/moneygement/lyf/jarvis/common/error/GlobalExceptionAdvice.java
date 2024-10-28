@@ -65,4 +65,10 @@ public class GlobalExceptionAdvice {
         log.error("Unreadable exception occurred! {}", e.getMessage());
         return new ResponseEntity<>(new ErrorResponse (e.getMessage(), HttpStatus.BAD_REQUEST),  HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> handleNotReadablePropertyException(RuntimeException e, WebRequest request) {
+        log.error("Unreadable exception occurred! {}", e.getMessage());
+        return new ResponseEntity<>(new ErrorResponse (e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR),  HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
