@@ -32,8 +32,7 @@ public class GroupRecommendation {
 	@Column(name = "owner_user_id", nullable = false, length = 40)
 	private String ownerUserId;
 
-	public GroupRecommendation(String sessionName, String introduction, String ownerUserId) {
-		this.sessionName = sessionName;
+	public GroupRecommendation(String introduction, String ownerUserId) {
 		this.introduction = introduction;
 		this.ownerUserId = ownerUserId;
 	}
