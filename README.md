@@ -47,6 +47,8 @@
    <img src="https://img.shields.io/badge/OAuth 2.0-4285F4?style=for-the-badge&logo=oauth&logoColor=white" alt="OAuth 2.0"/>
    <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" alt="Swagger"/>
    <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white" alt="Gradle"/>
+   <img src="https://img.shields.io/badge/Open Weather API-1E90FF?style=for-the-badge&logo=openweathermap&logoColor=white" alt="Open Weather API"/>
+   <img src="https://img.shields.io/badge/GraphHopper API-FF6600?style=for-the-badge&logo=graphhopper&logoColor=white" alt="GraphHopper API"/>
 </p>
 
 <h3 style="text-align: center;">Infrastructure</h3>
