@@ -1,0 +1,124 @@
+# User History API Specification
+
+## Get User Conversation History
+
+Retrieves the conversation history for a specific user.
+
+### HTTP Request
+```
+GET /user/history
+```
+
+### Request Headers
+| Name          | Type   | Required | Description                |
+|---------------|--------|----------|----------------------------|
+| Authorization | string | Yes      | Bearer {access_token}      |
+
+### Request Body
+```json
+{
+    "user_id": string
+}
+```
+
+### Request Parameters
+| Parameter | Type   | Required | Description                    |
+|-----------|--------|----------|--------------------------------|
+| user_id   | string | Yes      | Unique identifier of the user |
+
+### Response
+#### 200 OK
+```json
+{
+    "status": "success",
+    "data": {
+        "conversations": [
+            {
+                "id": string,
+                "timestamp": string,
+                "user": {
+                    "message": string,  // User's recommendation request
+                    "timestamp": string
+                },
+                "jarvis": {
+                    "message": string,  // Jarvis's plan response
+                    "plan_id": string,  // Reference to the created plan
+                    "timestamp": string
+                }
+            }
+        ]
+    }
+}
+```
+
+#### 400 Bad Request
+```json
+{
+    "status": "error",
+    "message": "Invalid user_id format"
+}
+```
+
+#### 401 Unauthorized
+```json
+{
+    "status": "error",
+    "message": "Unauthorized access"
+}
+```
+
+#### 404 Not Found
+```json
+{
+    "status": "error",
+    "message": "User not found"
+}
+```
+
+#### 500 Internal Server Error
+```json
+{
+    "status": "error",
+    "message": "Internal server error"
+}
+```
+
+### Example Request
+```curl
+curl -X GET 'https://api.example.com/user/history' \
+-H 'Authorization: Bearer {access_token}' \
+-H 'Content-Type: application/json' \
+-d '{
+    "user_id": "usr_123456789"
+}'
+```
+
+### Example Response
+```json
+{
+    "status": "success",
+    "data": {
+        "conversations": [
+            {
+                "id": "conv_123",
+                "timestamp": "2024-10-28T09:00:00Z",
+                "user": {
+                    "message": "주변 맛집 추천해줘",
+                    "timestamp": "2024-10-28T09:00:00Z"
+                },
+                "jarvis": {
+                    "message": "근처에 있는 맛집으로 일정을 만들어드렸습니다.",
+                    "plan_id": "pln_987654321",
+                    "timestamp": "2024-10-28T09:00:05Z"
+                }
+            }
+        ]
+    }
+}
+```
+
+### Notes
+- All timestamps are in ISO 8601 format
+- The response is paginated with 20 items per page (add pagination parameters as needed)
+- Messages are ordered by timestamp in descending order (newest first)
+- plan_id can be used to fetch detailed plan information from the plans API endpoint
