@@ -39,14 +39,15 @@ public class Recommendation {
 	private Double rating = 0.0;
 
 	public Recommendation(Long groupId, String name,
+		String description,
 		String category,
-		Double latitude, Double longitude, Double rating) {
+		Double latitude, Double longitude) {
 		this.groupId = groupId;
 		this.name = name;
+		this.description = description;
 		this.category = category;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.rating = rating;
 	}
 
 }

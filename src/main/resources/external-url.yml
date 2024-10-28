@@ -3,3 +3,4 @@ url:
   open-ai: https://api.openai.com/v1/completions
   graph-hopper: https://graphhopper.com/api/1/route
   open-weather: http://api.openweathermap.org/data/2.5/weather
+  rag: https://moneygement-rag.o-r.kr/recommend
