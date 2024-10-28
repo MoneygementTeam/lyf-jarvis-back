@@ -4,9 +4,13 @@ import static com.moneygement.lyf.jarvis.common.util.HttpClientUtil.post;
 
 import com.moneygement.lyf.jarvis.ai.domain.PointPickRequest;
 import com.moneygement.lyf.jarvis.ai.domain.PointPickResponse;
+import com.moneygement.lyf.jarvis.ai.domain.SmallChatRequest;
+import com.moneygement.lyf.jarvis.ai.domain.SmallChatResponse;
 import com.moneygement.lyf.jarvis.ai.domain.VoiceTextParsingRequest;
 import com.moneygement.lyf.jarvis.ai.domain.VoiceTextParsingResponse;
 import com.moneygement.lyf.jarvis.ai.config.ChatClientConfig;
+import com.moneygement.lyf.jarvis.common.error.ExternalApiFailedException;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +37,7 @@ public class AiServiceImpl implements AiService {
                       .entity(entity);
         } catch (Exception e) {
             log.error("sendChatToAi Failed! {}", e.getMessage());
-            throw new RuntimeException(e);
+            throw new ExternalApiFailedException(e.getMessage());
         }
 
         log.info("sendChatToAi Request: {}, Response: {}", prompt, response);
@@ -55,6 +59,11 @@ public class AiServiceImpl implements AiService {
     @Override
     public PointPickResponse callGptForPointPick(PointPickRequest request) {
         return sendChatToAi(config.getOptimalRouteSystemText(), request.getParsedVoiceText(), PointPickResponse.class);
+    }
+
+    @Override
+    public SmallChatResponse callSmallChat(SmallChatRequest request) {
+        return sendChatToAi(config.getSmallChatSystemText(), request.text(), SmallChatResponse.class);
     }
 }
 

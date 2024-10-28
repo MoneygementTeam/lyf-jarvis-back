@@ -14,6 +14,10 @@ public class ChatClientConfig {
         return builder.build();
     }
 
+
+    @Value("${ai.chat-client.system-text.small-chat}")
+    private String SmallChatSystemText;
+
     @Value("${ai.chat-client.system-text.voice-text-parsing}")
     private String voiceTextParsingSystemText;
 
